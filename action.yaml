@@ -1,5 +1,5 @@
 # action.yml
-name: 'Terrafrom Docs Build'
+name: 'Terraform Docs Build'
 description: 'Build docs site by generating data & publishing npm build to docs branch.'
 inputs:
   tf-config-path:  # id of input
