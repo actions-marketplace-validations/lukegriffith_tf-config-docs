@@ -1,14 +1,11 @@
 # action.yml
-name: 'Docs build'
+name: 'Terrafrom Docs Build'
 description: 'Build docs site by generating data & publishing npm build to docs branch.'
 inputs:
   tf-config-path:  # id of input
     description: 'Terraform Configuration Path'
     required: true
     default: ''
-outputs:
-  time: # id of output
-    description: 'The time we greeted you'
 runs:
   using: 'docker'
   image: 'Dockerfile'
