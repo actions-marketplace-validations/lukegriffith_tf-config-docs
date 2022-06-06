@@ -1,4 +1,2 @@
-www/data
-www/node_modules
-www/app/node_modules
-www/app/public/data
+*package-lock.json
+*node_modules
