@@ -6,10 +6,9 @@ import (
 	"path/filepath"
 
 	"github.com/hashicorp/terraform-config-inspect/tfconfig"
-	"github.com/lukegriffith/tf-config-docs/internal/cli"
 )
 
-func GetModulePaths(config cli.Config) map[string]string {
+func getModulePaths(config Config) map[string]string {
 	paths := map[string]string{}
 
 	for _, c := range config.Directories {

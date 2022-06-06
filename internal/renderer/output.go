@@ -6,24 +6,44 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
-	"log"
 
 	"github.com/hashicorp/terraform-config-inspect/tfconfig"
 )
 
-func OutputModule(dir string, module *tfconfig.Module, outputPath string) {
-	fileName := HashPath(dir)
-	file, err := json.Marshal(module)
-	if err != nil {
-		log.Fatal(err)
+// Render takes a config object and attempts to render
+// the data output for the given configuration.
+// No return is given besides an error, if no errors is
+// returned it can be assumed the rendering is successful.
+func Render(c Config) error {
+	paths := getModulePaths(c)
+	for path, _ := range paths {
+		module, _ := tfconfig.LoadModule(path)
+		err := outputModule(path, module, c.OutputPath)
+		if err != nil {
+			return err
+		}
 	}
-	err = ioutil.WriteFile(FormatOutputPath(outputPath, fileName), file, 0644)
+	err := outputIndex(paths, c.OutputPath)
 	if err != nil {
-		log.Fatal(err)
+		return err
 	}
+	return nil
 }
 
-func OutputIndex(path map[string]string, outputPath string) {
+func outputModule(dir string, module *tfconfig.Module, outputPath string) error {
+	fileName := hashPath(dir)
+	file, err := json.Marshal(module)
+	if err != nil {
+		return err
+	}
+	err = ioutil.WriteFile(formatOutputPath(outputPath, fileName), file, 0644)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func outputIndex(path map[string]string, outputPath string) error {
 
 	type Pair struct {
 		Module string
@@ -32,23 +52,24 @@ func OutputIndex(path map[string]string, outputPath string) {
 
 	index := map[string]Pair{}
 	for k, v := range path {
-		index[HashPath(k)] = Pair{k, v}
+		index[hashPath(k)] = Pair{k, v}
 	}
 	file, err := json.Marshal(index)
 	if err != nil {
-		log.Fatal(err)
+		return err
 	}
-	err = ioutil.WriteFile(FormatOutputPath(outputPath, "index"), file, 0644)
+	err = ioutil.WriteFile(formatOutputPath(outputPath, "index"), file, 0644)
 	if err != nil {
-		log.Fatal(err)
+		return err
 	}
+	return nil
 }
 
-func FormatOutputPath(outPath string, path string) string {
+func formatOutputPath(outPath string, path string) string {
 	return fmt.Sprint(outPath, "/", path)
 }
 
-func HashPath(path string) string {
+func hashPath(path string) string {
 	h := sha1.New()
 	h.Write([]byte(path))
 	sha1_hash := hex.EncodeToString(h.Sum(nil))

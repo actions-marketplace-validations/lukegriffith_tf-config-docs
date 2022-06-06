@@ -4,14 +4,10 @@ import (
 	"flag"
 	"log"
 
-	"github.com/hashicorp/terraform-config-inspect/tfconfig"
-
-	"github.com/lukegriffith/tf-config-docs/internal/cli"
 	"github.com/lukegriffith/tf-config-docs/internal/renderer"
 )
 
 func main() {
-
 	var modulePath, outputPath string
 
 	flag.StringVar(&modulePath, "modulePath", "", "Path to terrafrom module, or root.")
@@ -22,17 +18,16 @@ func main() {
 		log.Fatal("Provided argumetns not acceptable")
 	}
 
-	dirs := []cli.Directory{
+	dirs := []renderer.Directory{
 		{Path: modulePath, Recurse: true},
 	}
-	c := cli.Config{
+	c := renderer.Config{
 		Directories: dirs,
 		OutputPath:  outputPath,
 	}
-	paths := renderer.GetModulePaths(c)
-	for path, _ := range paths {
-		module, _ := tfconfig.LoadModule(path)
-		renderer.OutputModule(path, module, c.OutputPath)
+	err := renderer.Render(c)
+	if err != nil {
+		log.Fatal(err)
 	}
-	renderer.OutputIndex(paths, c.OutputPath)
+
 }

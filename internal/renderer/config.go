@@ -1,4 +1,4 @@
-package cli
+package renderer
 
 type Directory struct {
 	Path    string
