@@ -14,6 +14,7 @@ type Config struct {
 
 type moduleData struct {
 	Module   string
+	Hash     string
 	Root     string
 	TfModule *tfconfig.Module
 }

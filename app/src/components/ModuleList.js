@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 function ModuleList(props) {
     return (
         <div className="App">
@@ -8,9 +10,9 @@ function ModuleList(props) {
             )}
             <ul>
                 {props.data &&
-                    props.data.Modules.map(({ Module }) => (
-                        <li key={Module}>
-                            <h3>{Module}</h3>
+                    props.data.Modules.map(({ Module, Hash }) => (
+                        <li key={Hash}>
+                            <Link to={`/selected?module=${Hash}`}>{Module}</Link>
                         </li>
                     ))
                 }

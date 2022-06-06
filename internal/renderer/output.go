@@ -1,6 +1,8 @@
 package renderer
 
 import (
+	"crypto/sha1"
+	"encoding/hex"
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
@@ -18,7 +20,7 @@ func Render(c Config) error {
 	paths := getModulePaths(c)
 	for path, root := range paths {
 		module, _ := tfconfig.LoadModule(path)
-		m := moduleData{path, root, module}
+		m := moduleData{path, hashPath(fmt.Sprint(root, path)), root, module}
 		outputData.Modules = append(outputData.Modules, m)
 	}
 	err := outputDataToFile(outputData)
@@ -39,4 +41,11 @@ func outputDataToFile(o output) error {
 		return err
 	}
 	return nil
+}
+
+func hashPath(path string) string {
+	h := sha1.New()
+	h.Write([]byte(path))
+	sha1_hash := hex.EncodeToString(h.Sum(nil))
+	return sha1_hash
 }

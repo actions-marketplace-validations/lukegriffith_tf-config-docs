@@ -2,19 +2,22 @@ import './App.css';
 import React, { useMemo, useState, useEffect } from 'react'
 
 import ModuleList from './components/ModuleList';
+import Header from './components/Header';
+import Footer from './components/Footer';
 import Module from './components/Module';
 import Button from 'react-bootstrap/Button';
 
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, useSearchParams } from 'react-router-dom'
 
-import SelectedVIew from './pages/SelectedView'
+import SelectedView from './pages/SelectedView'
 
 
 function App() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [selectedModule, setSelectedModule] = useState(null)
+  let [searchParams, setSearchParams] = useSearchParams();
+    
 
   useEffect(() => {
     fetch("data.json")
@@ -42,10 +45,12 @@ function App() {
 
   return (
     <div>
+      <Header />
       <Routes>
-        <Route path='/' element={<ModuleList loading={loading} error={error} data={data} module={selectedModule} setModule={setSelectedModule} />} />
-        <Route path='/selected' element={<SelectedVIew loading={loading} error={error} data={data} module={selectedModule} setModule={setSelectedModule} />} />
+        <Route path='/' element={<ModuleList loading={loading} error={error} data={data} />} />
+        <Route path='/selected' element={<SelectedView loading={loading} error={error} data={data} module={searchParams.get("module")} />} />
       </Routes>
+      <Footer />
 
     </div>
   );
