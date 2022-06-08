@@ -1,6 +1,6 @@
 import Module from '../components/Module'
 import ModuleList from '../components/ModuleList'
-
+import React from 'react'
 
 function SelectedView(props) {
     return (
