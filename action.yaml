@@ -18,6 +18,6 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - ${{ inputs.tf-config-path }}
+    - ${{ inputs.tf-module-path }}
     - ${{ inputs.data-output-path }}
     - ${{ inputs.tf-module-recruse }}

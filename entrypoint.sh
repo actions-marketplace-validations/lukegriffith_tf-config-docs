@@ -1,6 +1,6 @@
 #!/bin/sh
 
-modPath=$1
+modPath=${1:-.}
 outputPath=${2:-./docs}
 recurse=${3:-"false"}
 
