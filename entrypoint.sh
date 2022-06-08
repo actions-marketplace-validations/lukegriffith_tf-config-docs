@@ -1,4 +1,3 @@
 #!/bin/sh
 
-ls 
-env
+/tf-config-docs --help
