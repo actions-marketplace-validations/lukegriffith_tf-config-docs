@@ -10,5 +10,6 @@ if [[ "$recurse" = "true" ]]; then
     recurseArg='-recurse'
 fi
 
-/tf-config-docs -modulePath $modPath -outputPath $outputPath $recurseArg
+tf-config-docs -modulePath $modPath -outputPath $outputPath $recurseArg
 
+# Can we push directly from here to docs? 

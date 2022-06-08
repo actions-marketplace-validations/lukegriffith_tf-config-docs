@@ -18,7 +18,7 @@ RUN npm run build
 
 FROM alpine:3.16.0
 RUN apk --no-cache add ca-certificates
-COPY --from=go-builder /go/bin/tf-config-docs /tf-config-docs
+COPY --from=go-builder /go/bin/tf-config-docs /usr/bin/tf-config-docs
 COPY --from=npm-builder /app/build /build
 COPY ./entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["sh", "/entrypoint.sh"]
