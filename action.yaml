@@ -2,12 +2,22 @@
 name: 'Terraform Docs Build'
 description: 'Build docs site by generating data & publishing npm build to docs branch.'
 inputs:
-  tf-config-path:  # id of input
+  tf-module-path:  # id of input
     description: 'Terraform Configuration Path'
-    required: true
-    default: ''
+    required: false
+    default: '.'
+  data-output-path:  # id of input
+    description: 'Terraform Configuration Path'
+    required: false
+    default: './docs'
+  tf-module-recruse:
+    description: 'Should the given tf-module-path be recursed for sub-modules.'
+    required: false
+    default: false
 runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
     - ${{ inputs.tf-config-path }}
+    - ${{ inputs.data-output-path }}
+    - ${{ inputs.tf-module-recruse }}
