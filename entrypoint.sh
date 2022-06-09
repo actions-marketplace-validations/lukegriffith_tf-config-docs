@@ -1,4 +1,5 @@
 #!/bin/sh
+set -x
 
 modPath=${1:-.}
 outputPath=${2:-./docs}
