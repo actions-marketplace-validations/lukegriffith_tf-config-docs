@@ -17,6 +17,7 @@ RUN npm run build
 # final container
 FROM alpine:3.16.0
 RUN apk --no-cache add ca-certificates
+RUN apk add --no-cache git
 COPY --from=go-builder /go/bin/tf-config-docs /usr/bin/tf-config-docs
 COPY --from=npm-builder /app/build /build
 COPY ./entrypoint.sh /entrypoint.sh
