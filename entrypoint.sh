@@ -11,7 +11,7 @@ if [[ "$recurse" = "true" ]]; then
     recurseArg='-recurse'
 fi
 
-
+ls / 
 ls /github/workspace
 
 mkdir /github/workspace/docs
