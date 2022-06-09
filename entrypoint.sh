@@ -13,6 +13,11 @@ fi
 
 ls /github/workspace
 
+mkdir /github/workspace/docs
+cp /app/build /docs
+
+cd /github/workspace
+git checkout -b docs
 
 tf-config-docs -modulePath $modPath -outputPath $outputPath $recurseArg
 

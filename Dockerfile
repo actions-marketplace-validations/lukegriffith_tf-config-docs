@@ -15,7 +15,6 @@ RUN npm run build
 
 
 # final container
-
 FROM alpine:3.16.0
 RUN apk --no-cache add ca-certificates
 COPY --from=go-builder /go/bin/tf-config-docs /usr/bin/tf-config-docs
