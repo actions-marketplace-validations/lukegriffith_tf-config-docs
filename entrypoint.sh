@@ -15,13 +15,13 @@ git config --global --add safe.directory /github/workspace
 
 cd /github/workspace
 
-mkdir $outputPath
+mkdir $outputPath || rm -rf $outputPath/*
 cp -r /build $outputPath
 tf-config-docs -modulePath $modPath -outputPath $outputPath $recurseArg
 
 git checkout -b docs
 git add $outputPath
 git commit -m "Updating Terraform docs."
-git push origin docs
+git push origin docs --force
 
 # Can we push directly from here to docs? 
