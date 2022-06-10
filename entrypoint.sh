@@ -15,12 +15,15 @@ ls /
 ls /github/workspace
 /home/runner/work/terraform-aws-eks/terraform-aws-eks
 
-mkdir /github/workspace/docs
-cp /app/build /docs
-
 cd /github/workspace
-git checkout -b docs
 
+mkdir $outputPath
+cp -r /build $outputPath
 tf-config-docs -modulePath $modPath -outputPath $outputPath $recurseArg
+
+git checkout -b docs
+git add $outputPath
+git commit -m "Updating Terraform docs."
+git push origin docs
 
 # Can we push directly from here to docs? 
