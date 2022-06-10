@@ -12,6 +12,8 @@ if [[ "$recurse" = "true" ]]; then
 fi
 
 git config --global --add safe.directory /github/workspace
+git config --global user.email "tf-config-docs@actions.com"
+git config --global user.name "tf-config-docs bot"
 
 cd /github/workspace
 
