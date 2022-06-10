@@ -11,9 +11,7 @@ if [[ "$recurse" = "true" ]]; then
     recurseArg='-recurse'
 fi
 
-ls / 
-ls /github/workspace
-/home/runner/work/terraform-aws-eks/terraform-aws-eks
+git config --global --add safe.directory /github/workspace
 
 cd /github/workspace
 
