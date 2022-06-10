@@ -13,6 +13,7 @@ fi
 
 ls / 
 ls /github/workspace
+/home/runner/work/terraform-aws-eks/terraform-aws-eks
 
 mkdir /github/workspace/docs
 cp /app/build /docs
