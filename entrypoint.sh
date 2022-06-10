@@ -18,7 +18,7 @@ git config --global user.name "tf-config-docs bot"
 cd /github/workspace
 
 mkdir $outputPath || rm -rf $outputPath/*
-cp -r /build $outputPath
+cp -r /build/* $outputPath
 tf-config-docs -modulePath $modPath -outputPath $outputPath $recurseArg
 
 git checkout -b docs
