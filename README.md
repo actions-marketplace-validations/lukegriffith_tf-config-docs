@@ -1,26 +1,30 @@
 # Tf-Config-Docs
 
-This project plans to implement a github action that can be added to a terrafrom code base, what'll automatically generate a github pages documentation site consisting of metadata and high level analytics of the codebase. 
+Project utilises the `hashicorp/terraform-config-inspect` golang library to obtain high level metadata about a given terraform codebase, and has a react app that presents a user interface for it. Future features will include a query search for similar modules, versions, etc and anayltics on the codebase.
 
-The data generator is written in golang, with the front end being built in react.
+Project can easily be added to any terraform codebase in github, by adding the action to render the documents website, **this will overwrite the target branch (docs by default) ./docs folder**
 
 ## Usage
 
+Enable github pages on the given repository, and set the branch to docs, with the folder being ./docs.
+
+Add the following workflow to `.github/workflows/actions.yaml`
+
+Currently, the docs branch needs to be unprotected for this action to work.
 
 ```
 name: 'Terraform Documentation'
-on: [push]
+on:
+  push:
+    branches:
+      - master
 
 jobs:
   main:
     name: build docs
     runs-on: ubuntu-latest
-    if: github.repository_owner == 'lukegriffith'
     steps:
     - uses: actions/checkout@v2
     - name: Terraform Docs Build
       uses: lukegriffith/tf-config-docs@alpha-v0.0.7
-      with:
-        data-output-path: ./docs
-
 ```
