@@ -22,7 +22,7 @@ func main() {
 	}
 
 	dirs := []renderer.Directory{
-		{Path: modulePath, Recurse: true},
+		{Path: modulePath, Recurse: recurse},
 	}
 	c := renderer.Config{
 		Directories: dirs,
