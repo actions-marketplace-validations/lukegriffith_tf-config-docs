@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    
+
     - name: Set output
       id: vars
       run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
@@ -26,7 +26,7 @@ jobs:
 
     # Podman Login action (https://github.com/redhat-actions/podman-login) also be used to log in,
     # in which case 'username' and 'password' can be omitted.
-    - name: Push To quay.io
+    - name: Push To ghcr.io
       id: push-to-quay
       uses: redhat-actions/push-to-registry@v2
       with:
