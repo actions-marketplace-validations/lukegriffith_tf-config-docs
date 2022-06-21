@@ -6,13 +6,10 @@ import './Module.css'
 function Module(props) {
 
     function getModule() {
-        console.log(props.data.Modules)
         var selectedModule
         var moduleData
         props.data.Modules.map(({ Module, Hash, Root, TfModule }) => {
             if (Hash == props.module) {
-                console.log(Hash)
-                console.log(TfModule)
                 selectedModule = pathTools.getName(Module, props.data)
                 moduleData = TfModule
             }
@@ -29,15 +26,25 @@ function Module(props) {
             </div>
         )
     }
+    function getModuleDiv() {
+        return (
+            <div>
+                <h1>Module</h1>
+                <p>Module Hash: {props.module}</p>
+                {props.data && getModule()}
+            </div>
+        )
+    }
 
+    var moduleNotNull = props.module != null
 
     return (
         <div className="Module">
-            <h1>Module</h1>
-            <p>Module Hash: {props.module}</p>
-            {props.data && getModule()}
+            {moduleNotNull && getModuleDiv()}
         </div>
     )
+
+
 
 
 }
