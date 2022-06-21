@@ -39,7 +39,7 @@ func Config() renderer.Config {
 	}
 
 	dirs := []renderer.Directory{
-		{Path: resolvePath(modulePath, friendlyName), Recurse: recurse},
+		{Path: resolvePath(modulePath), FriendlyName: friendlyName, Recurse: recurse},
 	}
 	c := renderer.Config{
 		Directories: dirs,
@@ -48,12 +48,9 @@ func Config() renderer.Config {
 	return c
 }
 
-func resolvePath(path string, friendlyName string) string {
+func resolvePath(path string) string {
 	const relativeDot = "."
 	if relativeDot == path {
-		if friendlyName == "" {
-			return friendlyName
-		}
 		p, err := filepath.Abs(path)
 		if err != nil {
 			log.Fatal(err)

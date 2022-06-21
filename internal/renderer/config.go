@@ -3,8 +3,9 @@ package renderer
 import "github.com/hashicorp/terraform-config-inspect/tfconfig"
 
 type Directory struct {
-	Path    string
-	Recurse bool
+	Path         string
+	FriendlyName string
+	Recurse      bool
 }
 
 type Config struct {

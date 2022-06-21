@@ -25,4 +25,4 @@ runs:
     - ${{ inputs.tf-module-path }}
     - ${{ inputs.data-output-path }}
     - ${{ inputs.tf-module-recruse }}
-    - ${{ inputs.tf-module-load-env-nam }}
+    - ${{ inputs.tf-module-load-env-name }}

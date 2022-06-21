@@ -5,7 +5,7 @@ import './Layout.css'
 
 function SelectedView(props) {
     return (
-        <div class="moduleContainer">
+        <div className="moduleContainer">
             <ModuleList loading={props.loading} error={props.error} data={props.data}/>
         </div>
     )
