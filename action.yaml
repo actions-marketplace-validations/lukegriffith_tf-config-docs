@@ -16,7 +16,7 @@ inputs:
     default: false
 runs:
   using: 'docker'
-  image: 'ghcr.io/lukegriffith/tf-config-docs:stable'
+  image: 'docker://ghcr.io/lukegriffith/tf-config-docs:stable'
   args:
     - ${{ inputs.tf-module-path }}
     - ${{ inputs.data-output-path }}
