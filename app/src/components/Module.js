@@ -13,7 +13,7 @@ function Module(props) {
             if (Hash == props.module) {
                 console.log(Hash)
                 console.log(TfModule)
-                selectedModule = pathTools.getName(Module)
+                selectedModule = pathTools.getName(Module, props.data)
                 moduleData = TfModule
             }
         });
