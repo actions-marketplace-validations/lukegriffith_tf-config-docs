@@ -4,6 +4,12 @@ Project utilises the `hashicorp/terraform-config-inspect` golang library to obta
 
 Project can easily be added to any terraform codebase in github, by adding the action to render the documents website, **this will overwrite the target branch (docs by default) ./docs folder**
 
+## Example
+
+A fork of the eks module has been used to demonstrate the potentail of the project;
+
+[Example Site](https://lukegriffith.github.io/terraform-aws-eks/)
+
 ## Usage
 
 Enable github pages on the given repository, and set the branch to docs, with the folder being ./docs.
