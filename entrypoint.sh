@@ -13,7 +13,7 @@ if [[ "$recurse" = "true" ]]; then
 fi
 
 if [[ "$loadEnvName" = "true" ]]; then
-    [ -z "$WORKDIR_FRIENDLY_NAME" ] && echo "laodEnvName provided but no env var found." && exit 1
+    [ -z "$WORKDIR_FRIENDLY_NAME" ] && echo "loadEnvName provided but no env var found." && exit 1
     loadEnvArg='-loadEnvName'
 fi
 

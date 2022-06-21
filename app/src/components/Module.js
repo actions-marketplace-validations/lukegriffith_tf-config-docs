@@ -1,5 +1,6 @@
 import { useSearchParams } from "react-router-dom";
 import React from 'react'
+import pathTools from '../lib/pathTools'
 import './Module.css'
 
 function Module(props) {
@@ -12,7 +13,7 @@ function Module(props) {
             if (Hash == props.module) {
                 console.log(Hash)
                 console.log(TfModule)
-                selectedModule = Module
+                selectedModule = pathTools.getName(Module)
                 moduleData = TfModule
             }
         });
