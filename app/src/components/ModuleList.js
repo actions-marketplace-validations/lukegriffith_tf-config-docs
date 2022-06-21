@@ -17,7 +17,7 @@ function ModuleList(props) {
                 {props.data &&
                     props.data.Modules.map(({ Module, Hash }) => (
                         <li key={Hash}>
-                            <Link to={`/selected?module=${Hash}`}>{pathTools.getName(Module)}</Link>
+                            <Link to={`/selected?module=${Hash}`}>{pathTools.getName(Module, props.data)}</Link>
                         </li>
                     ))
                 }
