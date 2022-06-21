@@ -1,6 +1,14 @@
-name: Build Container
+name: Test Container Build
 
-on: [pull-request]
+on:
+  pull_request:
+    types:
+      - opened
+    branches:    
+      - '*'
+    paths:
+      - '**.js'
+      - '**.go'
 
 jobs:
   build:
