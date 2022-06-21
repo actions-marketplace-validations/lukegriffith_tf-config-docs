@@ -7,7 +7,6 @@ function SelectedView(props) {
     return (
         <div class="moduleContainer">
             <ModuleList loading={props.loading} error={props.error} data={props.data}/>
-            <Module loading={props.loading} error={props.error} data={props.data} module={props.module}  />
         </div>
     )
 }

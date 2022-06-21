@@ -1,0 +1,18 @@
+
+.ModuleList {
+    display: inline;
+    min-width: 25vh;
+}
+
+.ModuleList * {
+    color: black;
+}
+
+.ModuleList  a {
+    text-decoration: underline;
+}
+
+.ModuleList  ul {
+    list-style: none;
+    padding: 10px;
+}

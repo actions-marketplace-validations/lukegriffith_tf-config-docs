@@ -1,5 +1,6 @@
 import { useSearchParams } from "react-router-dom";
 import React from 'react'
+import './Module.css'
 
 function Module(props) {
 
@@ -30,7 +31,7 @@ function Module(props) {
 
 
     return (
-        <div>
+        <div className="Module">
             <h1>Module</h1>
             <p>Module Hash: {props.module}</p>
             {props.data && getModule()}

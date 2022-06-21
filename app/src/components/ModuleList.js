@@ -1,9 +1,13 @@
 import { Link } from 'react-router-dom'
 import React from 'react'
+import pathTools from '../lib/pathTools'
+import './ModuleList.css'
 
 function ModuleList(props) {
+
+
     return (
-        <div className="App">
+        <div className="ModuleList">
             <h1>Modules</h1>
             {props.loading && <div>A moment please...</div>}
             {props.error && (
@@ -13,7 +17,7 @@ function ModuleList(props) {
                 {props.data &&
                     props.data.Modules.map(({ Module, Hash }) => (
                         <li key={Hash}>
-                            <Link to={`/selected?module=${Hash}`}>{Module}</Link>
+                            <Link to={`/selected?module=${Hash}`}>{pathTools.getName(Module)}</Link>
                         </li>
                     ))
                 }

@@ -1,0 +1,14 @@
+
+header {
+    background-color: #282c34;
+    min-height: 1vh;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: center;
+    font-size: calc(8px + 1vmin);
+    color: white;
+    padding: 3px;
+  }
+  
+  

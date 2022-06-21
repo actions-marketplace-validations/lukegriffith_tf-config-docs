@@ -10,6 +10,7 @@ import Button from 'react-bootstrap/Button';
 import { Routes, Route, useSearchParams } from 'react-router-dom'
 
 import SelectedView from './pages/SelectedView'
+import DefaultView from './pages/DefaultView'
 
 
 function App() {
@@ -44,14 +45,13 @@ function App() {
   }, [])
 
   return (
-    <div>
+    <div className="App">
       <Header />
       <Routes>
-        <Route path='/' element={<ModuleList loading={loading} error={error} data={data} />} />
+        <Route path='/' element={<DefaultView loading={loading} error={error} data={data} />} />
         <Route path='/selected' element={<SelectedView loading={loading} error={error} data={data} module={searchParams.get("module")} />} />
       </Routes>
       <Footer />
-
     </div>
   );
 }
