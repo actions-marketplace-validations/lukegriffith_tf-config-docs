@@ -3,6 +3,7 @@ package main
 import (
 	"flag"
 	"log"
+	"path/filepath"
 
 	"github.com/lukegriffith/tf-config-docs/internal/renderer"
 )
@@ -22,7 +23,7 @@ func main() {
 	}
 
 	dirs := []renderer.Directory{
-		{Path: modulePath, Recurse: recurse},
+		{Path: resolvePath(modulePath), Recurse: recurse},
 	}
 	c := renderer.Config{
 		Directories: dirs,
@@ -33,4 +34,16 @@ func main() {
 		log.Fatal(err)
 	}
 
+}
+
+func resolvePath(path string) string {
+	relativeDot := "."
+	if relativeDot == path {
+		p, err := filepath.Abs(path)
+		if err != nil {
+			log.Fatal(err)
+		}
+		return p
+	}
+	return path
 }
