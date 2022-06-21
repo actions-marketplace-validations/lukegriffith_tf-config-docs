@@ -14,6 +14,10 @@ inputs:
     description: 'Should the given tf-module-path be recursed for sub-modules.'
     required: false
     default: false
+  tf-module-load-env-name:
+    description: 'If a relative path is given, i.e. module shows as "." load project name from env var "WORKDIR_FRIENDLY_NAME".'
+    required: false
+    default: false
 runs:
   using: 'docker'
   image: 'docker://ghcr.io/lukegriffith/tf-config-docs:stable'
@@ -21,3 +25,4 @@ runs:
     - ${{ inputs.tf-module-path }}
     - ${{ inputs.data-output-path }}
     - ${{ inputs.tf-module-recruse }}
+    - ${{ inputs.tf-module-load-env-nam }}
