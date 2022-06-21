@@ -10,14 +10,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Build Image
-      id: build-image
-      uses: redhat-actions/buildah-build@v2
-      with:
-        image: tf-config-docs
-        tags: latest ${{ steps.vars.outputs.tag }}
-        containerfiles: |
-          ./Dockerfile
     - name: Bump version and push tag
       id: tag_version
       uses: mathieudutour/github-tag-action@v6.0
