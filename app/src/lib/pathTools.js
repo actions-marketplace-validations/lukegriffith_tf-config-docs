@@ -6,7 +6,7 @@ const pathTools = {
             return obj.Path === module
         })
 
-        if ('FriendlyName' in directory) {
+        if (directory.length > 0 && 'FriendlyName' in directory[0]) {
             moduleName = directory.FriendlyName
         }
 
