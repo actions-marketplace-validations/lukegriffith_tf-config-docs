@@ -32,5 +32,31 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Terraform Docs Build
-      uses: lukegriffith/tf-config-docs@alpha-v0.0.7
+      uses: lukegriffith/tf-config-docs@v0.1.21
+```
+
+If the module shows at `/workspace/github`, use the following configuration;
+
+```
+
+name: 'Terraform Documentation'
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  main:
+    name: build docs
+    runs-on: ubuntu-latest
+    if: github.repository_owner == 'lukegriffith'
+    steps:
+    - uses: actions/checkout@v2
+    - name: Terraform Docs Build
+      uses: lukegriffith/tf-config-docs@v0.1.21
+      with:
+        tf-module-load-env-name: true
+      env:
+        WORKDIR_FRIENDLY_NAME: ${{ github.repository }}
+
 ```
