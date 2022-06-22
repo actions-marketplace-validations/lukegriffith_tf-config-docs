@@ -1,52 +1,66 @@
-import { useSearchParams } from "react-router-dom";
+//import { useSearchParams } from "react-router-dom";
 import React from 'react'
 import pathTools from '../lib/pathTools'
 import './Module.css'
+import Stats from './Stats'
+import './Stats.css'
 
 function Module(props) {
-
-    function getModule() {
-        var selectedModule
-        var moduleData
+    console.log(1)
+    function GetModule() {
+        var moduleData, selectedModule
         props.data.Modules.map(({ Module, Hash, Root, TfModule }) => {
-            if (Hash == props.module) {
+            if (Hash === props.module) {
                 selectedModule = pathTools.getName(Module, props.data)
                 moduleData = TfModule
             }
         });
 
-        return (
-            <div>
-                <p>Name: {selectedModule}</p>
-                <pre>
-                    <code>
-                        {JSON.stringify(moduleData, null, 2)}
-                    </code>
-                </pre>
-            </div>
-        )
+        return {
+            selectedModule: selectedModule,
+            moduleData: moduleData
+        }
     }
-    function getModuleDiv() {
-        return (
-            <div>
-                <h1>Module</h1>
-                <p>Module Hash: {props.module}</p>
-                {props.data && getModule()}
-            </div>
-        )
-    }
-
-    var moduleNotNull = props.module != null
+    var moduleContext = GetModule()
+    const [showJson, setShowJson] = React.useState(false)
+    const jsonOnClick = () => setShowJson(!showJson)
 
     return (
         <div className="Module">
-            {moduleNotNull && getModuleDiv()}
+            <div className="moduleHeader">
+                <h1>Module</h1>
+                <p>Module Hash: {props.module}</p>
+                <p>Name: {moduleContext.selectedModule}</p>
+                <p>Path: {moduleContext.moduleData.path}</p>
+            </div>
+            <ModuleStats moduleContext={moduleContext} libraryData={props.data}/>        
+            <div className="moduleJson">
+                <button onClick={jsonOnClick}>show json</button>
+                {
+                    showJson && <pre>
+                        <code>
+                            {JSON.stringify(moduleContext.moduleData, null, 2)}
+                        </code>
+                    </pre>
+                }
+
+            </div>
+        </div>
+
+    )
+}
+
+function ModuleStats(props) {
+    return (
+        <div className="statsContainer">
+            <Stats.TerraformVersion moduleContext={props.moduleContext} libraryData={props.libraryData}/>
+            <Stats.ResourceCount moduleContext={props.moduleContext} libraryData={props.libraryData}/>
+            <Stats.SubModules moduleContext={props.moduleContext} libraryData={props.libraryData}/>
         </div>
     )
-
-
-
-
 }
+
+
+
 
 export default Module

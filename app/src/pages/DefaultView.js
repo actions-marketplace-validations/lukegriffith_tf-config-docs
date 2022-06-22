@@ -4,10 +4,12 @@ import React from 'react'
 import './Layout.css'
 
 function SelectedView(props) {
+    var loaded = !props.loading
+    var moduleSelected = loaded && props.module != null;
     return (
         <div className="moduleContainer">
-            <ModuleList loading={props.loading} error={props.error} data={props.data}/>
-            <Module loading={props.loading} error={props.error} data={props.data} module={props.module}  />
+            {loaded && <ModuleList loading={props.loading} error={props.error} data={props.data}/>}
+            {moduleSelected && <Module loading={props.loading} error={props.error} data={props.data} module={props.module}  /> }
         </div>
     )
 }
