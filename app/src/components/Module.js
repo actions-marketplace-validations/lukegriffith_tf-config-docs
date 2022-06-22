@@ -33,7 +33,14 @@ function Module(props) {
                 <p>Name: {moduleContext.selectedModule}</p>
                 <p>Path: {moduleContext.moduleData.path}</p>
             </div>
+            <hr class="dashed"></hr>
             <ModuleStats moduleContext={moduleContext} libraryData={props.data}/>        
+            <hr class="dashed"></hr>
+            <div>
+                <h1>Similar To X of Y modules</h1>
+                <button>expand</button>
+            </div>
+            <hr class="dashed"></hr>
             <div className="moduleJson">
                 <button onClick={jsonOnClick}>show json</button>
                 {
@@ -53,9 +60,9 @@ function Module(props) {
 function ModuleStats(props) {
     return (
         <div className="statsContainer">
-            <Stats.TerraformVersion moduleContext={props.moduleContext} libraryData={props.libraryData}/>
-            <Stats.ResourceCount moduleContext={props.moduleContext} libraryData={props.libraryData}/>
-            <Stats.SubModules moduleContext={props.moduleContext} libraryData={props.libraryData}/>
+            <Stats.View function={Stats.TerraformVersion} moduleContext={props.moduleContext} libraryData={props.libraryData}/>
+            <Stats.View function={Stats.ResourceCount} moduleContext={props.moduleContext} libraryData={props.libraryData}/>
+            <Stats.View function={Stats.SubModules} moduleContext={props.moduleContext} libraryData={props.libraryData}/>
         </div>
     )
 }

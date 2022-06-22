@@ -2,39 +2,47 @@ import React from 'react'
 import './Stats.css'
 
 const Stats = {
-    TerraformVersion: function(props) {
+
+    View: function(props) {
         console.log(props)
+        var header, text = props.function(props)
         return (
             <div className="statsElement">
-                <h4>TF Core</h4>
-                <p>{props.moduleContext.moduleData.required_core}</p>
+                <h4>{header}</h4>
+                <p>{text}</p>
             </div>
         )
     },
-    ResourceCount: function(props) {
-        var resourceCount = 0
-        for (let resource in props.moduleContext.moduleData.managed_resources) {
-            resourceCount++
+    Functions: {
+        TerraformVersion: function(props) {
+            console.log(props)
+            return (
+                "TF Core", 
+                props.moduleContext.moduleData.required_core
+            )
+        },
+        ResourceCount: function(props) {
+            var resourceCount = 0
+            for (let resource in props.moduleContext.moduleData.managed_resources) {
+                resourceCount++
+            }
+            return (
+                "Resources",
+                resourceCount
+            )
+        },
+        SubModules: function(props) {
+            var moduleCount = 0
+            for (let resource in props.moduleContext.moduleData.module_calls) {
+                moduleCount++
+            }
+            return (
+                "SubModules",
+                moduleCount
+            )
         }
-        return (
-            <div className="statsElement">
-                <h4>Resources</h4>
-                <p>{resourceCount}</p>
-            </div>
-        )
-    },
-    SubModules: function(props) {
-        var moduleCount = 0
-        for (let resource in props.moduleContext.moduleData.module_calls) {
-            moduleCount++
-        }
-        return (
-            <div className="statsElement">
-                <h4>SubModules</h4>
-                <p>{moduleCount}</p>
-            </div>
-        )
     }
+    
 }
 
 export default Stats
