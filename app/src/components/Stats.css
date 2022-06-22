@@ -1,0 +1,14 @@
+
+.statsContainer {
+    display: flex;
+}
+
+.statsElement {
+    text-align: center;
+    border: dotted;
+    min-width: 7vh;
+    max-width: 15vh;
+    min-height: 1vh;
+    padding: 1vh;
+    margin: 0.2vh;
+}

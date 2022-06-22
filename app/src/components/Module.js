@@ -2,6 +2,8 @@
 import React from 'react'
 import pathTools from '../lib/pathTools'
 import './Module.css'
+import Stats from './Stats'
+import './Stats.css'
 
 function Module(props) {
     console.log(1)
@@ -33,7 +35,7 @@ function Module(props) {
             </div>
             <ModuleStats moduleContext={moduleContext} libraryData={props.data}/>        
             <div className="moduleJson">
-                <button onClick={jsonOnClick}>json</button>
+                <button onClick={jsonOnClick}>show json</button>
                 {
                     showJson && <pre>
                         <code>
@@ -50,9 +52,10 @@ function Module(props) {
 
 function ModuleStats(props) {
     return (
-        <div className="statsGrid">
-            <h1>Stats</h1>
-            <p>TBA</p>
+        <div className="statsContainer">
+            <Stats.TerraformVersion moduleContext={props.moduleContext} libraryData={props.libraryData}/>
+            <Stats.ResourceCount moduleContext={props.moduleContext} libraryData={props.libraryData}/>
+            <Stats.SubModules moduleContext={props.moduleContext} libraryData={props.libraryData}/>
         </div>
     )
 }
