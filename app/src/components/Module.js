@@ -2,8 +2,8 @@
 import React from 'react'
 import pathTools from '../lib/pathTools'
 import './Module.css'
-import Stats from './Stats'
-import './Stats.css'
+import ModuleStats from './ModuleStats'
+import './ModuleStats.css'
 
 function Module(props) {
     console.log(1)
@@ -57,15 +57,6 @@ function Module(props) {
     )
 }
 
-function ModuleStats(props) {
-    return (
-        <div className="statsContainer">
-            <Stats.View function={Stats.TerraformVersion} moduleContext={props.moduleContext} libraryData={props.libraryData}/>
-            <Stats.View function={Stats.ResourceCount} moduleContext={props.moduleContext} libraryData={props.libraryData}/>
-            <Stats.View function={Stats.SubModules} moduleContext={props.moduleContext} libraryData={props.libraryData}/>
-        </div>
-    )
-}
 
 
 
