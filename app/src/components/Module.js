@@ -6,7 +6,6 @@ import ModuleStats from './ModuleStats'
 import './ModuleStats.css'
 
 function Module(props) {
-    console.log(1)
     function GetModule() {
         var moduleData, selectedModule
         props.data.Modules.map(({ Module, Hash, Root, TfModule }) => {

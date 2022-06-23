@@ -5,7 +5,6 @@ const pathTools = {
             return obj.Path === module
         })
         if (directory.length > 0 && 'FriendlyName' in directory[0]) {
-            console.log(directory[0])
             moduleName = directory[0].FriendlyName
         }
         const arr = moduleName.split("/")

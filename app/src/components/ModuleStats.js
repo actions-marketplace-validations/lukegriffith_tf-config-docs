@@ -2,11 +2,8 @@ import React from 'react'
 import './ModuleStats.css'
 
 const Stats = {
-
     View: function(props) {
-        console.log(props)
         var [header, text] = props.function(props)
-        console.log(header, text)
         return (
             <div className="statsElement">
                 <h4>{header}</h4>
@@ -22,29 +19,39 @@ const Stats = {
             ]
         },
         function ResourceCount(props) {
-            var resourceCount = 0
-            for (let resource in props.moduleContext.moduleData.managed_resources) {
-                resourceCount++
-            }
             return [
                 "Resources",
-                resourceCount
+                CountProperties(props.moduleContext.moduleData.managed_resources)
             ]
         },
         function SubModules(props) {
-            var moduleCount = 0
-            for (let resource in props.moduleContext.moduleData.module_calls) {
-                moduleCount++
-            }
             return [
                 "SubModules",
-                moduleCount
+                CountProperties(props.moduleContext.moduleData.module_calls)
+            
+            ]
+        },
+        function Variables(props) {
+            return [
+                "Variables",
+                CountProperties(props.moduleContext.moduleData.variables)
+            ]
+        },
+        function Outputs(props) {
+            return [
+                "Outputs",
+                CountProperties(props.moduleContext.moduleData.outputs)
             ]
         }
     ]
-    
 }
-
+function CountProperties(object) {
+    let count = 0
+    for (let property in object) {
+        count++
+    }  
+    return count
+}
 function ModuleStats(props) {
     return (
         <div className="statsContainer">
@@ -52,6 +59,4 @@ function ModuleStats(props) {
         </div>
     )
 }
-
-
 export default ModuleStats
