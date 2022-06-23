@@ -1,6 +1,7 @@
 
 .statsContainer {
     display: flex;
+    flex-wrap: wrap;
 }
 
 .statsElement {

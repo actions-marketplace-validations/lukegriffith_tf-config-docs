@@ -34,12 +34,6 @@ function Module(props) {
             </div>
             <hr class="dashed"></hr>
             <ModuleStats moduleContext={moduleContext} libraryData={props.data}/>        
-            <hr class="dashed"></hr>
-            <div>
-                <h1>Similar To X of Y modules</h1>
-                <button>expand</button>
-            </div>
-            <hr class="dashed"></hr>
             <div className="moduleJson">
                 <button onClick={jsonOnClick}>show json</button>
                 {
