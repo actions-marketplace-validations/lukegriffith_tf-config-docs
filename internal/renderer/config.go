@@ -2,6 +2,16 @@ package renderer
 
 import "github.com/hashicorp/terraform-config-inspect/tfconfig"
 
+type exists struct{}
+
+type stringSet map[string]exists
+
+type resourceMap map[string]stringSet
+
+type providerMap map[string]stringSet
+
+type moduleMap map[string]string
+
 type Directory struct {
 	Path         string
 	FriendlyName string
@@ -21,6 +31,9 @@ type moduleData struct {
 }
 
 type output struct {
-	Config  Config
-	Modules []moduleData
+	Config       Config
+	Modules      []moduleData
+	ResourcesMap *resourceMap
+	ProvidersMap *providerMap
+	ModuleMap    *moduleMap
 }

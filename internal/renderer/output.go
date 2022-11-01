@@ -16,11 +16,35 @@ import (
 // returned it can be assumed the rendering is successful.
 func Render(c Config) error {
 
-	outputData := output{c, make([]moduleData, 0)}
+	var (
+		resources resourceMap
+		providers providerMap
+		modules   moduleMap
+	)
+
+	resources = make(resourceMap)
+	providers = make(providerMap)
+	modules = make(moduleMap)
+
+	outputData := output{c, make([]moduleData, 0), &resources, &providers, &modules}
 	paths := getModulePaths(c)
 	for path, root := range paths {
 		module, _ := tfconfig.LoadModule(path)
 		m := moduleData{path, hashPath(fmt.Sprint(root, path)), root, module}
+
+		modules[m.Hash] = path
+		for _, resource := range module.ManagedResources {
+			if _, ok := resources[resource.Type]; !ok {
+				resources[resource.Type] = make(stringSet)
+			}
+			resources[resource.Type][m.Hash] = exists{}
+		}
+		for _, provider := range module.ProviderConfigs {
+			if _, ok := providers[provider.Name]; !ok {
+				providers[provider.Name] = make(stringSet)
+			}
+			providers[provider.Name][m.Hash] = exists{}
+		}
 		outputData.Modules = append(outputData.Modules, m)
 	}
 	err := outputDataToFile(outputData)
