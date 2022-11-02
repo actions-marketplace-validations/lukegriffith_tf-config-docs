@@ -2,14 +2,15 @@ import './App.css';
 import React, { useMemo, useState, useEffect } from 'react'
 
 import Header from './components/Header';
+import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Module from './components/Module';
 import Button from 'react-bootstrap/Button';
 
 import { Routes, Route, useSearchParams } from 'react-router-dom'
 
-import DefaultView from './pages/DefaultView'
-
+import Overview from './pages/OverviewView'
+import ModuleView from './pages/ModuleView'
 
 function App() {
   const [data, setData] = useState(null);
@@ -46,8 +47,10 @@ function App() {
   return (
     <div className="App">
       <Header />
+      <Navbar />
       <Routes>
-        <Route path='/' element={<DefaultView loading={loading} error={error} data={data}  module={searchParams.get("module")} />} />
+          <Route path='/' element={<Overview loading={loading} error={error} data={data}/>}/>
+          <Route path='/modules' element={<ModuleView loading={loading} error={error} data={data}  module={searchParams.get("module")}/>}/>
       </Routes>
       <Footer />
     </div>

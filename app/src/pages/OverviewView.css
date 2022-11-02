@@ -1,0 +1,17 @@
+/*
+TODO: Genralise these with the stats view, so when the stlye is improved both will benefit
+*/
+.providers {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.provider {
+  text-align: center;
+  border: dotted;
+  min-width: 7vh;
+  max-width: 15vh;
+  min-height: 1vh;
+  padding: 1vh;
+  margin: 0.2vh;
+}

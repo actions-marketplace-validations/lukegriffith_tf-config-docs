@@ -1,7 +1,7 @@
 import Module from '../components/Module'
 import ModuleList from '../components/ModuleList'
 import React from 'react'
-import './DefaultView.css'
+import './ModuleView.css'
 
 function SelectedView(props) {
     var loaded = !props.loading

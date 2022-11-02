@@ -3,9 +3,7 @@ import './Header.css'
 
 function Header() {
     return <header>
-        <h1>Terraform Module Docs</h1>
+        <h1>Terraform Library</h1>
     </header>
 }
-
-
 export default Header

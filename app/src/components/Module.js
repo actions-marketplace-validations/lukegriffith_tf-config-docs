@@ -32,8 +32,7 @@ function Module(props) {
                 <p>Name: {moduleContext.selectedModule}</p>
                 <p>Path: {moduleContext.moduleData.path}</p>
             </div>
-            <hr class="dashed"></hr>
-            <ModuleStats moduleContext={moduleContext} libraryData={props.data}/>        
+            <ModuleStats moduleContext={moduleContext} libraryData={props.data}/>
             <div className="moduleJson">
                 <button onClick={jsonOnClick}>show json</button>
                 {
@@ -43,15 +42,9 @@ function Module(props) {
                         </code>
                     </pre>
                 }
-
             </div>
         </div>
-
     )
 }
-
-
-
-
 
 export default Module

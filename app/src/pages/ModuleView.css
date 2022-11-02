@@ -3,4 +3,9 @@
     flex-direction: row;
     flex-wrap: wrap;
     padding: 10px;
+
+}
+
+.moduleContainer > ** p {
+    word-wrap: break-all;
 }
